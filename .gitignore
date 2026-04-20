@@ -1,0 +1,36 @@
+# ========================
+# .NET / ASP.NET Core
+# ========================
+bin/
+obj/
+*.user
+.vs/
+appsettings.Development.json
+publish/
+**/Properties/launchSettings.json
+
+# ========================
+# Node / Angular
+# ========================
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.*
+
+# ========================
+# OS / Editor noise
+# ========================
+.DS_Store
+Thumbs.db
+.idea/
+
+# VS Code — ignore personal settings, keep shared workspace config
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
