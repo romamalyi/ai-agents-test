@@ -1,0 +1,27 @@
+# ─── .NET ────────────────────────────────────────────────────────────────────
+bin/
+obj/
+*.user
+.vs/
+appsettings.Development.json
+publish/
+out/
+
+# ─── Node / Angular ──────────────────────────────────────────────────────────
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+.env
+
+# ─── OS / Editor noise ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+
+# Keep shared VS Code workspace settings; ignore personal/local overrides
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
