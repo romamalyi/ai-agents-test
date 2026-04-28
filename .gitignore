@@ -32,9 +32,5 @@ yarn-error.log*
 Thumbs.db
 .idea/
 
-# VS Code — ignore personal settings, keep shared workspace config
-.vscode/*
-!.vscode/settings.json
-!.vscode/extensions.json
-!.vscode/launch.json
-!.vscode/tasks.json
+# VS Code
+.vscode/
