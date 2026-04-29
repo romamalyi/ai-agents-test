@@ -1,0 +1,33 @@
+{
+  "name": "poc-nexus",
+  "version": "1.0.0",
+  "description": "Leobit POC - Leo AI Chat Assistant",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "type": "commonjs",
+  "dependencies": {},
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^21.2.2",
+    "@angular/cli": "^21.2.2",
+    "@angular/common": "^21.2.2",
+    "@angular/compiler": "^21.2.2",
+    "@angular/compiler-cli": "^21.2.2",
+    "@angular/core": "^21.2.2",
+    "@angular/forms": "^21.2.2",
+    "@angular/platform-browser": "^21.2.2",
+    "@angular/platform-browser-dynamic": "^21.2.2",
+    "@angular/router": "^21.2.2",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "rxjs": "~7.8.0",
+    "tailwindcss": "^3.4.19",
+    "tslib": "^2.8.1",
+    "typescript": "~5.9.0",
+    "zone.js": "^0.15.1"
+  }
+}

@@ -1,0 +1,212 @@
+// ===== Platform Tabs =====
+.tab-active {
+  background-color: #E6F3DF;
+  color: #57B12D;
+  border: 2px solid #57B12D;
+}
+
+.tab-inactive {
+  background-color: #F9F9F9;
+  color: #9EA2AD;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    background-color: #f3f4f6;
+  }
+}
+
+// ===== Shared =====
+.chat-container {
+  overflow: hidden;
+}
+
+.messages-area {
+  background-color: #fafafa;
+}
+
+// ===== Slack Theme =====
+.sidebar-slack {
+  background-color: #572759;
+
+  .channel-item {
+    color: #cdb4ce;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    &.channel-active {
+      background-color: #FFFFFFCC;
+      color: #191919;
+    }
+  }
+}
+
+.bot-message {
+  background-color: #f0fdf0;
+  border-radius: 4px;
+}
+
+// ===== Teams Theme =====
+.teams-chat-list {
+  width: 220px;
+  background-color: #F2F6F9;
+  border-right: 1px solid #e5e5e5;
+}
+
+.teams-chat-item {
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: #e8e8e8;
+  }
+
+  &.active {
+    background-color: #FFFFFF80;
+    border-left-color: #57B12D;
+  }
+}
+
+.teams-messages-area {
+  background-color: #fff;
+}
+
+.teams-bot-message {
+  background-color: #f0fdf0;
+  border-radius: 4px;
+}
+
+.teams-input-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  padding: 8px 12px;
+  background-color: #fff;
+
+  &:focus-within {
+    border-color: #6264A7;
+  }
+}
+
+// ===== Typing Indicator =====
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 4px 0;
+
+  span {
+    width: 8px;
+    height: 8px;
+    background-color: #7fca03;
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+// ===== Mention Suggestion Dropdown =====
+.mention-suggestion-dropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-bottom: none;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 50;
+  margin-bottom: 0;
+}
+
+.mention-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: #f0fdf0;
+  }
+}
+
+.mention-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.mention-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #1a1a1a;
+}
+
+.mention-badge {
+  font-size: 9px;
+  background-color: #dcfce7;
+  color: #15803d;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.mention-commands {
+  padding: 4px 0;
+}
+
+.mention-command-item {
+  padding: 8px 12px 8px 48px;
+  font-size: 13px;
+  color: #4b5563;
+  cursor: pointer;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: #f0fdf0;
+    color: #166534;
+  }
+}
+
+// ===== @leo Mention Highlight =====
+::ng-deep .mention-leo {
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 600;
+}

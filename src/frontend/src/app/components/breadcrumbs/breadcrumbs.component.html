@@ -1,0 +1,14 @@
+<div class="bg-[#f9f9f9]">
+  <nav aria-label="Breadcrumbs" class="w-full mb-4 p-4 font-sans font-semibold content-frame">
+    <ol class="flex flex-wrap items-center text-sm">
+      <li *ngFor="let breadcrumb of breadcrumbs" class="flex items-center" [class.ml-2]="breadcrumb !== breadcrumbs[0]" [class.font-bold]="breadcrumb.active">
+        <a *ngIf="!breadcrumb.active && breadcrumb.url" [href]="breadcrumb.url" class="text-black hover:text-gray-700 underline">
+          {{ breadcrumb.label }}
+        </a>
+        <span *ngIf="breadcrumb.active" class="text-black" aria-current="page">
+          {{ breadcrumb.label }}
+        </span>
+      </li>
+    </ol>
+  </nav>
+</div>

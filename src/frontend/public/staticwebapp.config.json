@@ -1,0 +1,14 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": [
+      "favicon.ico",
+      "/*.{png,jpg,gif,svg,css,js,ico}",
+      "/assets/*"
+    ]
+  },
+  "globalHeaders": {
+    "X-Frame-Options": "ALLOWALL",
+    "Content-Security-Policy": "frame-ancestors *"
+  }
+}

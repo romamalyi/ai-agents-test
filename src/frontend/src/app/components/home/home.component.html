@@ -1,0 +1,349 @@
+<app-header></app-header>
+
+<main>
+  <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+
+  <!-- Hero Section -->
+  <section class="container mx-auto p-4 content-frame">
+    <div class="flex justify-between items-center mb-8">
+      <div class="flex items-center">
+        <h1 class="text-3xl font-bold extra-bold">Leo AI Chat Assistant</h1>
+      </div>
+    </div>
+    <div class="mb-12 text-[#595959]">
+      <p>Interactive demo of an AI-powered corporate assistant that integrates with Slack and Microsoft Teams. Leo can answer HR questions, troubleshoot IT issues, provide sales analytics, track project status, and retrieve knowledge base information — all powered by Azure OpenAI. Each channel demonstrates a different use case for corporate AI assistants.</p>
+    </div>
+  </section>
+
+  <!-- Main Interactive Section -->
+  <section class="mx-auto px-4 py-8 pb-20 bg-[#f9f9f9]">
+    <div class="container content-frame sm:px-16 xs:px-4">
+      <div class="flex flex-col lg:flex-row gap-8">
+
+        <!-- Left Column - How to Use -->
+        <div class="w-full lg:w-1/3">
+          <h1 class="text-3xl font-bold mb-6">How to Use</h1>
+          <ol class="space-y-6 my-6" style="list-style-type: decimal; list-style-position: outside; margin-left: 32px; line-height: 24px;">
+            <li class="mb-4"><span class="font-bold">Select a platform tab</span> — choose between Slack or Microsoft Teams interface.</li>
+            <li class="mb-4"><span class="font-bold">Browse channels</span> — each channel demonstrates a different AI use case (HR, IT, Sales, Projects, Knowledge Base, Executive).</li>
+            <li class="mb-4"><span class="font-bold">Tag the bot</span> — type <code class="bg-gray-200 px-1 rounded">&#64;leo</code> in your message to activate the AI assistant in any channel.</li>
+            <li class="mb-4"><span class="font-bold">Use the Apps section</span> — in Slack, click "Leo" under Apps for a direct conversation without needing to tag. In Teams, select the "Leo" chat.</li>
+            <li class="mb-4"><span class="font-bold">Ask questions</span> — try HR policy questions, IT troubleshooting, sales analytics, sprint status, or company knowledge queries.</li>
+          </ol>
+          <div class="mt-6 text-sm text-gray-700">
+            <span class="font-bold">How it works: </span>
+            <span>Each channel uses a different AI system prompt to demonstrate how a single assistant can serve multiple corporate functions. Powered by Azure OpenAI with context-aware responses.</span>
+          </div>
+        </div>
+
+        <!-- Right Column - Chat Interface -->
+        <div class="w-full lg:w-2/3 flex flex-col gap-0 p-6 bg-white shadow-lg">
+          <!-- Platform Tabs -->
+          <div class="flex mb-6">
+            <button
+              (click)="switchTab('slack')"
+              [class]="activeTab === 'slack' ? 'tab-active' : 'tab-inactive'"
+              class="px-6 py-3 font-bold text-sm flex flex-1 items-center justify-center gap-2 transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zm-1.27 0a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.163 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.163 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.163 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zm0-1.27a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.315A2.528 2.528 0 0 1 24 15.163a2.528 2.528 0 0 1-2.522 2.523h-6.315z"/>
+              </svg>
+              Slack
+            </button>
+            <button
+              (click)="switchTab('teams')"
+              [class]="activeTab === 'teams' ? 'tab-active' : 'tab-inactive'"
+              class="px-6 py-3 font-bold text-sm flex flex-1 items-center justify-center gap-2 transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.625 10.75h-3.125v4.875c0 1.725-1.4 3.125-3.125 3.125h-3.05A4.376 4.376 0 0 0 15.625 22a4.375 4.375 0 0 0 4.375-4.375v-6.25a.625.625 0 0 1 .625-.625z"/>
+                <circle cx="18.5" cy="6.5" r="2.5"/>
+                <path d="M13.75 8h-9.5C3.56 8 3 8.56 3 9.25v7.5A4.25 4.25 0 0 0 7.25 21h2.5A4.25 4.25 0 0 0 14 16.75V9.25C14 8.56 13.44 8 13.75 8z"/>
+                <circle cx="9" cy="4" r="3"/>
+                <rect x="3" y="8" width="11" height="10" rx="1.25" fill="currentColor"/>
+                <path d="M5.5 11h5v1.25h-1.75V16h-1.5v-3.75H5.5V11z" fill="white"/>
+              </svg>
+              MS Teams
+            </button>
+          </div>
+
+          <!-- ==================== SLACK LAYOUT ==================== -->
+          <div *ngIf="activeTab === 'slack'" class="bg-white flex chat-container" style="height: 550px;">
+            <!-- Slack Sidebar -->
+            <div class="sidebar-slack w-48 flex-shrink-0 flex flex-col">
+              <div class="flex gap-2 p-3 border-b border-white/20">
+                <img src="icons/slack-colored.svg" />
+                <span class="font-bold text-white text-sm">Leobit Workspace</span>
+              </div>
+              <div class="p-2 flex-1 overflow-y-auto">
+                <div class="text-xs font-bold text-gray-300 uppercase mb-2 px-2">Channels</div>
+                <button
+                  *ngFor="let channel of currentPlatform.channels; let i = index"
+                  (click)="selectChannel(i)"
+                  [class.channel-active]="activeSection === 'channels' && i === activeItemIndex"
+                  class="w-full text-left px-2 py-1.5 text-sm rounded mb-0.5 channel-item transition-colors">
+                  {{ channel.name }}
+                </button>
+
+                <!-- Apps Section -->
+                <div *ngIf="currentPlatform.apps?.length" class="mt-4">
+                  <div class="text-xs font-bold text-gray-300 uppercase mb-2 px-2">Apps</div>
+                  <button
+                    *ngFor="let app of currentPlatform.apps; let i = index"
+                    (click)="selectApp(i)"
+                    [class.channel-active]="activeSection === 'apps' && i === activeItemIndex"
+                    class="w-full text-left px-2 py-1.5 text-sm rounded mb-0.5 channel-item transition-colors flex items-center gap-1.5">
+                    <img class="w-5 h-5 p-[2px] rounded rounded-xs bg-white" src="icons/Leobit.svg" />
+                    {{ app.name }}
+                    <span class="ml-1.5 text-[10px] leading-none bg-green-100 text-green-700 px-1.5 py-1 rounded rounded-s font-semibold">BOT</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slack Chat Area -->
+            <div class="flex-1 flex flex-col">
+              <div class="flex gap-2 items-center px-4 py-3 border-b border-gray-200 bg-white">
+                <span class="font-bold text-gray-900">{{ currentChannel.isApp ? 'Leo' : currentChannel.name }}</span>
+                <div *ngIf="currentChannel.isApp" class="text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded font-semibold">
+                  <span>BOT</span>
+                </div>
+              </div>
+              <div #messagesArea class="flex-1 overflow-y-auto px-4 py-3 space-y-4 messages-area">
+                <div *ngIf="currentChannel.isApp && currentChannel.messages.length === 0" class="flex flex-col items-center justify-center h-full text-gray-400">
+                  <div class="w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-bold mb-3 bg-white">
+                    <img class="w-12 h-12" src="icons/Leobit.svg" />
+                  </div>
+                  <p class="text-sm font-semibold text-gray-600">Leo</p>
+                  <p class="text-xs mt-1">AI Assistant by Leobit</p>
+                  <p class="text-xs mt-3 text-center max-w-xs">Send a message to start a conversation. No need to tag — Leo responds to everything here.</p>
+                </div>
+                <div *ngFor="let msg of currentChannel.messages" class="flex items-start gap-3" [class.bot-message]="msg.isBot">
+                  <div class="w-8 h-8 rounded flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
+                    [style.background]="msg.isBot ? 'bg-white' : getAvatarColor(msg.avatar)">
+                    <span *ngIf="!msg.isBot">{{ msg.avatar }}</span>
+                    <span *ngIf="msg.isBot">
+                      <img class="w-6 h-6 bg-white rounded" src="icons/Leobit.svg" />
+                    </span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-baseline gap-2">
+                      <span class="font-bold text-sm" [class.text-leobit-gradient]="msg.isBot">{{ msg.user }}</span>
+                      <span *ngIf="msg.isBot" class="text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded font-semibold">BOT</span>
+                      <span class="text-xs text-gray-400">{{ msg.time }}</span>
+                    </div>
+                    <div class="text-sm text-gray-800 mt-0.5 whitespace-pre-line" [innerHTML]="highlightMentions(msg.text)"></div>
+                  </div>
+                </div>
+                <ng-container *ngTemplateOutlet="typingTpl"></ng-container>
+              </div>
+              <ng-container *ngTemplateOutlet="inputTpl"></ng-container>
+            </div>
+          </div>
+
+          <!-- ==================== TEAMS LAYOUT ==================== -->
+          <div *ngIf="activeTab === 'teams'" class="bg-white shadow-lg flex chat-container" style="height: 550px;">
+            <div class="teams-chat-list flex flex-col flex-shrink-0">
+              <div class="items-center px-3 border-b border-gray-200">
+                <div class="flex items-center justify-between h-[50px]">
+                  <div class="flex gap-1">
+                    <img src="icons/ms-teams-colored.svg" />
+                    <span class="font-bold text-sm text-gray-900">Chat</span>
+                  </div>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#6264A7"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                </div>
+              </div>
+              <div class="flex-1 overflow-y-auto">
+                <div *ngFor="let channel of currentPlatform.channels; let i = index"
+                  (click)="selectChannel(i)"
+                  class="teams-chat-item"
+                  [class.active]="isTeamsItemActive(i)">
+                  <div class="flex items-center gap-2.5 px-3 py-2.5 cursor-pointer">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
+                      [style.background]="channel.isApp ? 'white' : getTeamsChannelColor(i)">
+                      <span *ngIf="!channel.isApp">{{ channel.name.charAt(0) }}</span>
+                      <img *ngIf="channel.isApp" class="w-7 h-7" src="icons/Leobit.svg" />
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-1.5">
+                          <span class="text-sm font-semibold text-gray-900 truncate">{{ channel.name }}</span>
+                          <span *ngIf="channel.isApp" class="text-[9px] bg-green-100 text-green-700 px-1 py-0 rounded font-semibold">BOT</span>
+                        </div>
+                        <span *ngIf="channel.messages.length" class="text-[11px] text-gray-400 flex-shrink-0 ml-2">{{ channel.messages[channel.messages.length - 1]?.time }}</span>
+                      </div>
+                      <p *ngIf="channel.messages.length" class="text-xs text-gray-500 truncate mt-0.5">
+                        {{ channel.messages[channel.messages.length - 1]?.user }}: {{ channel.messages[channel.messages.length - 1]?.text }}
+                      </p>
+                      <p *ngIf="!channel.messages.length" class="text-xs text-gray-400 truncate mt-0.5">Start a conversation</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-1 flex flex-col border-l border-gray-200">
+              <div class="px-4 py-2.5 border-b border-gray-200 bg-white h-[50px]">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                    [style.background]="currentChannel.isApp ? 'white' : getTeamsChannelColor(activeItemIndex)">
+                    <span *ngIf="!currentChannel.isApp">{{ currentChannel.name.charAt(0) }}</span>
+                    <img *ngIf="currentChannel.isApp" class="w-6 h-6" src="icons/Leobit.svg" />
+                  </div>
+                  <span class="font-bold text-sm text-gray-900">{{ currentChannel.name }}</span>
+                  <span *ngIf="currentChannel.isApp" class="text-[10px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded font-semibold">BOT</span>
+                </div>
+              </div>
+
+              <div #messagesArea class="flex-1 overflow-y-auto px-4 py-3 space-y-3 teams-messages-area">
+                <div *ngIf="currentChannel.isApp && currentChannel.messages.length === 0" class="flex flex-col items-center justify-center h-full text-gray-400">
+                  <div class="w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-bold mb-3 bg-white">
+                    <img src="icons/Leobit.svg" />
+                  </div>
+                  <p class="text-sm font-semibold text-gray-600">Leo</p>
+                  <p class="text-xs mt-1">AI Assistant by Leobit</p>
+                  <p class="text-xs mt-3 text-center max-w-xs">Send a message to start a conversation. No need to tag — Leo responds to everything here.</p>
+                </div>
+                <div *ngFor="let msg of currentChannel.messages" class="flex items-start gap-2.5" [class.teams-bot-message]="msg.isBot">
+                  <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
+                    [style.background]="msg.isBot ? 'bg-white' : getAvatarColor(msg.avatar)">
+                    <span *ngIf="!msg.isBot">{{ msg.avatar }}</span>
+                    <span *ngIf="msg.isBot">
+                      <img class="w-6 h-6 bg-white rounded-full" src="icons/Leobit.svg" />
+                    </span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-baseline gap-2">
+                      <span class="font-semibold text-sm" [class.text-leobit-gradient]="msg.isBot">{{ msg.user }}</span>
+                      <span *ngIf="msg.isBot" class="text-[10px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded font-semibold">BOT</span>
+                      <span class="text-[11px] text-gray-400">{{ msg.time }}</span>
+                    </div>
+                    <div class="text-[13px] text-gray-800 mt-0.5 whitespace-pre-line" [innerHTML]="highlightMentions(msg.text)"></div>
+                  </div>
+                </div>
+                <ng-container *ngTemplateOutlet="typingTpl"></ng-container>
+              </div>
+
+              <div class="px-4 py-2 border-t border-gray-200 relative">
+                <!-- Mention suggestion dropdown -->
+                <div *ngIf="showMentionSuggestion && !currentChannel.isApp" class="mention-suggestion-dropdown">
+                  <div class="mention-header" (click)="insertMention()">
+                    <div class="mention-avatar">
+                      <img class="w-5 h-5" src="icons/Leobit.svg" />
+                    </div>
+                    <span class="mention-name">Leo</span>
+                    <span class="mention-badge">BOT</span>
+                  </div>
+                  <div *ngIf="currentCommands.length" class="mention-commands">
+                    <div *ngFor="let cmd of currentCommands" class="mention-command-item" (click)="selectCommand(cmd)">
+                      {{ cmd.label }}
+                    </div>
+                  </div>
+                </div>
+                <div class="teams-input-box">
+                  <input type="text" [(ngModel)]="messageInput" (ngModelChange)="onMessageInputChange()" (keydown.enter)="sendMessage()"
+                    [placeholder]="currentChannel.isApp ? 'Message Leo' : 'Type a new message (use @leo to ask the bot)'"
+                    class="flex-1 outline-none text-sm bg-transparent">
+                  <div class="flex items-center gap-1 text-gray-400">
+                    <button (click)="sendMessage()" class="text-gray-400 hover:text-[#6264A7] transition-colors"
+                      [class.text-[#6264A7]]="messageInput.trim()" [disabled]="!messageInput.trim()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <app-features [features]="features" [pocName]="pocName"></app-features>
+
+  <section class="py-16 bg-[#daeed1]">
+    <div class="container mx-auto px-4 content-frame">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        <div class="w-full md:w-2/3">
+          <h2 class="text-4xl extra-bold uppercase mb-8">
+            <span class="text-black">Discover </span><span class="text-leobit-gradient">Case study</span>
+          </h2>
+          <p class="text-lg mb-8">Get the complete story behind this solution — from the business reasoning to a detailed project breakdown and an in-depth overview of the solution's key capabilities.</p>
+          <a href="#" class="border border-2 border-lime-500 text-black-500 extra-bold py-2 px-6 hover:bg-lime-500 sm:w-1/3 xs:w-full text-center block hover:text-white transition duration-300">VIEW CASE STUDY</a>
+        </div>
+        <div class="w-full md:w-1/3">
+          <img src="icons/case-study.png" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:pt-16 md:pb-8 lg:pt-20 lg:pb-10">
+    <div class="container mx-auto px-4 content-frame">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 md:mb-12 lg:mb-16 items-start">
+        <div class="md:col-span-1">
+          <h2 class="text-3xl lg:text-4xl extra-bold uppercase mb-4 md:mb-0">
+            <span class="text-black">Related</span><br><span class="text-leobit-gradient">Industries</span>
+          </h2>
+        </div>
+        <div class="md:col-span-2">
+          <p class="text-gray-600 text-base leading-relaxed">AI-powered corporate assistants enhance productivity across industries — from financial services and healthcare to legal, education, and retail — by providing instant access to corporate knowledge directly within team communication platforms.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div *ngFor="let industry of industries" class="bg-[#F9F9F9] p-6 flex flex-col transition duration-300 ease-in-out hover:shadow-lg">
+          <div class="mb-4">
+            <div class="w-16 h-16 flex items-center justify-center border-2 border-none border-leobit-light-green">
+              <img [src]="industry.icon" [alt]="industry.title">
+            </div>
+          </div>
+          <h3 class="text-lg extra-bold text-gray-900 mb-2 uppercase">{{ industry.title }}</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">{{ industry.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<ng-template #typingTpl>
+  <div *ngIf="isTypingInCurrentChannel" class="flex items-start gap-3">
+    <div class="w-8 h-8 flex items-center justify-center text-white text-xs font-bold flex-shrink-0 bg-white"
+      [class]="activeTab == 'teams' ? 'rounded-full' : 'rounded'">
+      <img class="w-6 h-6" src="icons/Leobit.svg" />
+    </div>
+    <div class="flex-1">
+      <div class="flex items-baseline gap-2">
+        <span class="font-bold text-sm text-leobit-gradient">Leo</span>
+        <span class="text-[10px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded font-semibold">BOT</span>
+      </div>
+      <div class="typing-indicator mt-1"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #inputTpl>
+  <div class="px-4 py-3 border-t border-gray-200 relative">
+    <!-- Mention suggestion dropdown -->
+    <div *ngIf="showMentionSuggestion && !currentChannel.isApp" class="mention-suggestion-dropdown">
+      <div class="mention-header" (click)="insertMention()">
+        <div class="mention-avatar">
+          <img class="w-5 h-5" src="icons/Leobit.svg" />
+        </div>
+        <span class="mention-name">Leo</span>
+        <span class="mention-badge">BOT</span>
+      </div>
+      <div *ngIf="currentCommands.length" class="mention-commands">
+        <div *ngFor="let cmd of currentCommands" class="mention-command-item" (click)="selectCommand(cmd)">
+          {{ cmd.label }}
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 border border-gray-300 rounded-lg px-3 py-2">
+      <input type="text" [(ngModel)]="messageInput" (ngModelChange)="onMessageInputChange()" (keydown.enter)="sendMessage()"
+        [placeholder]="currentChannel.isApp ? 'Message Leo' : 'Message ' + currentChannel.name + ' (type @leo to ask the bot)'"
+        class="flex-1 outline-none text-sm bg-transparent">
+      <button (click)="sendMessage()" class="text-gray-400 hover:text-leobit-green transition-colors" [disabled]="!messageInput.trim()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+</ng-template>

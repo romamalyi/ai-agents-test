@@ -1,0 +1,164 @@
+{
+  "hr-assistant": [
+    {
+      "label": "Check PTO balance",
+      "prompt": "What is my PTO balance and how many days do I have remaining this year?",
+      "context": "PTO policy: 20 PTO days/year, 10 sick days, 5 personal days. Max rollover: 5 days. Check balance at hr.company.com under My Time Off. Unused PTO above rollover limit expires Dec 31."
+    },
+    {
+      "label": "Benefits enrollment",
+      "prompt": "What benefits are available and when is the enrollment period?",
+      "context": "Benefits: 401(k) with 6% match, health/dental/vision insurance (3 plan tiers), FSA/HSA options. Open enrollment: November 1-15 annually. Life changes (marriage, baby) allow mid-year enrollment within 30 days."
+    },
+    {
+      "label": "Onboarding process",
+      "prompt": "What does the onboarding process look like for new hires?",
+      "context": "Onboarding: 2-week structured program. Week 1: IT setup, compliance training, HR orientation, buddy introduction. Week 2: team immersion, tool access, first 30/60/90-day goals. Checklist has 15 items, avg completion 8 business days. Buddy system pairs new hire with tenured employee for 3 months."
+    },
+    {
+      "label": "Parental leave policy",
+      "prompt": "What is the parental leave policy?",
+      "context": "Parental leave: 16 weeks paid for primary caregiver, 8 weeks for secondary caregiver. Applies to birth, adoption, and foster placement. Must notify HR 30 days in advance. Gradual return option: 50% schedule for 2 weeks after leave. Benefits continue during leave."
+    },
+    {
+      "label": "Learning budget",
+      "prompt": "How does the learning and development budget work?",
+      "context": "Learning budget: $2,000/year per employee for courses, conferences, certifications, and books. Submit requests via hr.company.com > Learning > Request. Pre-approval required for expenses over $500. Unused budget does not roll over. Company also provides free LinkedIn Learning and Pluralsight access."
+    }
+  ],
+  "it-helpdesk": [
+    {
+      "label": "VPN troubleshooting",
+      "prompt": "My VPN is not working. How can I fix it?",
+      "context": "VPN: GlobalProtect v5.2 (mandatory). Troubleshooting steps: 1) Disconnect and reconnect, 2) Clear DNS cache (ipconfig /flushdns on Windows, sudo dscacheutil -flushcache on Mac), 3) Update client to v5.2 from servicedesk.company.com, 4) Restart computer, 5) Check if MFA token expired. If still failing, contact IT ext. 4357."
+    },
+    {
+      "label": "Request software",
+      "prompt": "How do I request new software to be installed?",
+      "context": "Software requests: Submit via ServiceNow portal at servicedesk.company.com. Approved software list: VS Code, IntelliJ, Slack, Teams, Zoom, 1Password, Docker Desktop, Postman. Non-approved software requires manager + security team approval (5 business day SLA). License costs charged to department budget."
+    },
+    {
+      "label": "Reset password",
+      "prompt": "How do I reset my password?",
+      "context": "Password reset: Self-service at identity.company.com (requires MFA). If locked out, call IT helpdesk ext. 4357 (Mon-Fri 8am-6pm). Password policy: min 12 chars, must include uppercase, lowercase, number, special char. Expires every 90 days. Cannot reuse last 10 passwords."
+    },
+    {
+      "label": "Report security issue",
+      "prompt": "I think I received a phishing email. What should I do?",
+      "context": "Security incident response: 1) Do NOT click any links or download attachments, 2) Forward the email to security@company.com, 3) Report via the 'Report Phishing' button in Outlook, 4) If you already clicked, disconnect from network and call security team immediately at ext. 4400. Quarterly phishing training is mandatory."
+    },
+    {
+      "label": "Printer setup",
+      "prompt": "How do I set up printing in the office?",
+      "context": "Printing: Follow-me printing via PaperCut. Setup: 1) Go to print.company.com, 2) Log in with your corporate credentials, 3) Install PaperCut client, 4) Print to 'FollowMe' queue from any app, 5) Tap your badge at any office printer to release. Color printing requires manager approval code. Default is double-sided B&W."
+    }
+  ],
+  "sales-insights": [
+    {
+      "label": "Pipeline summary",
+      "prompt": "What does our current sales pipeline look like?",
+      "context": "Pipeline: $4.1M in active deals, 62% historical win rate. 23 deals in pipeline: 8 in negotiation ($1.8M), 10 in proposal ($1.5M), 5 in discovery ($800K). Pipeline coverage ratio: 3.2x vs Q2 target. Weighted pipeline: $2.54M. Average deal cycle: 45 days standard, 90 days enterprise."
+    },
+    {
+      "label": "Q1 revenue report",
+      "prompt": "What are our Q1 revenue numbers?",
+      "context": "Q1 Revenue: $2.3M (12% above target of $2.05M). Breakdown: New business $1.4M, Renewals $650K, Upsells $250K. Top rep: Sarah Chen ($890K closed). ARR growth: 34% YoY, currently at $8.2M. Average deal size: $125K (up from $95K last year). 18 deals closed in Q1."
+    },
+    {
+      "label": "Top deals status",
+      "prompt": "What is the status of our top deals?",
+      "context": "Top deals: 1) Acme Corp $180K - CLOSED WON (signed last week), 2) GlobalTech $250K - CLOSED WON (3-year contract), 3) Meridian $450K - IN NEGOTIATION (legal reviewing contract, expected close next week), 4) Pinnacle Systems $320K - PROPOSAL SENT (demo scheduled Thursday), 5) Atlas Industries $200K - DISCOVERY (initial call went well, next meeting Monday)."
+    },
+    {
+      "label": "Forecast vs target",
+      "prompt": "How are we tracking against our sales targets?",
+      "context": "Q2 Target: $2.5M. Current committed: $1.2M (48%). Best case forecast: $3.1M. Pipeline coverage: 3.2x (healthy). Risk factors: 2 enterprise deals ($800K total) in extended negotiation. Win rate trending up: 62% vs 58% same quarter last year. Churn rate: 3.2% (industry avg 5.1%). Customer retention: 96.8%."
+    },
+    {
+      "label": "Churn analysis",
+      "prompt": "What does our customer churn look like?",
+      "context": "Churn: 3.2% monthly (industry avg 5.1%). Lost 4 accounts in Q1 totaling $180K ARR. Top churn reasons: 1) Budget cuts (2 accounts), 2) Competitor switch (1 account), 3) Project ended (1 account). At-risk accounts: 3 flagged by CS team ($420K combined ARR). Retention initiatives: QBR program, dedicated CSM for accounts >$100K."
+    }
+  ],
+  "project-copilot": [
+    {
+      "label": "Sprint status",
+      "prompt": "What is the current sprint status?",
+      "context": "Sprint 14 (ends Friday). Total: 42 story points committed. Completed: 27 SP (64%). In progress: 8 SP across 3 tickets. Remaining: 7 SP (2 tickets). Burndown: on track. 15 story points remaining. Sprint goal: Complete auth flow redesign and caching improvements. Team velocity avg: 38 SP."
+    },
+    {
+      "label": "Open blockers",
+      "prompt": "Are there any current blockers or issues?",
+      "context": "Blockers: 1) Integration test suite takes 45 min - spike ticket PROJ-234 created for parallelization (assigned to Carlos), 2) External API dependency for payment module - waiting on vendor response (escalated Monday), 3) Design review pending for dashboard redesign - meeting scheduled Wednesday 2pm. No P1 incidents currently."
+    },
+    {
+      "label": "Deployment status",
+      "prompt": "What is the latest deployment status?",
+      "context": "Last deployment: v2.4.1 to staging (Monday). Changes: new auth flow, Redis caching improvements, 3 bug fixes. QA status: in progress, 12/18 test cases passed, 6 remaining. Production release: Thursday after QA sign-off. CI/CD: Azure DevOps, auto-deploy to staging on PR merge to develop. Rollback plan documented in runbook."
+    },
+    {
+      "label": "Team velocity",
+      "prompt": "What is our team velocity trend?",
+      "context": "Velocity (last 5 sprints): Sprint 10: 35 SP, Sprint 11: 38 SP, Sprint 12: 40 SP, Sprint 13: 42 SP, Sprint 14: 42 SP (projected). Trend: steady increase. Team: 6 devs, 2 QA, 1 designer, 1 PM. Capacity this sprint: 90% (one dev on PTO Monday-Wednesday). Avg cycle time: 3.2 days per ticket."
+    },
+    {
+      "label": "Tech stack info",
+      "prompt": "What is our current tech stack?",
+      "context": "Tech stack: Frontend - Angular 21 with Tailwind CSS. Backend - .NET 9 with minimal APIs. Database - PostgreSQL 16 with Redis cache. Cloud - Azure (App Service, Blob Storage, Key Vault, Application Insights). CI/CD - Azure DevOps pipelines. Monitoring - Application Insights + Grafana dashboards. Source control - Azure DevOps Git repos."
+    }
+  ],
+  "knowledge-base": [
+    {
+      "label": "Architecture docs",
+      "prompt": "Where can I find the architecture decision records?",
+      "context": "Architecture docs: ADR format in /docs/architecture in each repo. Naming: ADR-001-title.md. Template at wiki.company.com/engineering/adr-template. Key ADRs: ADR-001 (microservices), ADR-005 (event-driven), ADR-012 (API versioning). Architecture diagrams in Miro board linked from wiki homepage."
+    },
+    {
+      "label": "Onboarding checklist",
+      "prompt": "Where is the onboarding checklist for new team members?",
+      "context": "Onboarding checklist: SharePoint > HR > Onboarding folder. 15 items including: corporate account setup, dev environment setup, security training, codebase walkthrough, team introductions, first PR review. Avg completion: 8 business days. Engineering-specific checklist at wiki.company.com/engineering/onboarding. Buddy assigned from same team."
+    },
+    {
+      "label": "Engineering standards",
+      "prompt": "What are our engineering standards and coding guidelines?",
+      "context": "Engineering standards: wiki.company.com/engineering/standards. Includes: code review policy (2 approvers required), branching strategy (GitFlow), PR template, commit message format (conventional commits), test coverage target (80%), CI pipeline requirements (lint, test, build must pass). Style guides per language in /docs/style-guides."
+    },
+    {
+      "label": "Design system",
+      "prompt": "Where can I find the design system and component library?",
+      "context": "Design system: Figma at figma.com/company-workspace. Component library v3.1 at design.company.com. Storybook deployed at storybook.company.com. Design tokens in @company/design-tokens npm package. Brand guidelines in SharePoint > Marketing > Brand. Icon set: custom + Heroicons. Color palette and typography specs in Figma."
+    },
+    {
+      "label": "Meeting recordings",
+      "prompt": "How do I access meeting recordings and notes?",
+      "context": "Meeting recordings: Microsoft Stream, auto-transcribed. Access via Teams > Files tab or stream.company.com. Retention: 90 days for regular meetings, permanent for all-hands and town halls. Meeting notes: Confluence space per team. Action items tracked in Azure DevOps. Weekly team meetings auto-recorded if >3 participants."
+    }
+  ],
+  "executive-brief": [
+    {
+      "label": "Q1 KPI summary",
+      "prompt": "Give me a summary of Q1 KPIs.",
+      "context": "Q1 KPIs: Revenue $2.3M (12% above $2.05M target). ARR: $8.2M (+34% YoY). NPS: 72 (up from 65). Employee NPS: 45 (industry avg 32). Customer retention: 96.8% (target 95%). Headcount: 142 (12 open, 4 offers pending). Churn: 3.2% (industry 5.1%). Sprint velocity: avg 38 SP. Uptime: 99.97%. Support ticket resolution: avg 4.2 hours."
+    },
+    {
+      "label": "Revenue forecast",
+      "prompt": "What is the revenue forecast for this fiscal year?",
+      "context": "FY Forecast: $8.5M total revenue. Q1 actual: $2.3M. Q2 target: $2.5M (pipeline coverage 3.2x). Q3 target: $2.0M (seasonally adjusted). Q4 target: $1.7M. Growth drivers: enterprise segment (+45% YoY), new product line ($800K projected). Risks: 2 large deals ($800K) in extended negotiation. Runway: 24 months at current burn rate."
+    },
+    {
+      "label": "Headcount update",
+      "prompt": "What is the current headcount and hiring status?",
+      "context": "Headcount: 142 employees. Open positions: 12 (5 engineering, 3 sales, 2 product, 1 design, 1 HR). Offers pending: 4 (2 senior engineers, 1 sales director, 1 product manager). Avg time to fill: 42 days. Attrition rate: 8% annualized (industry avg 13%). New hires Q1: 8. Planned headcount EOY: 165."
+    },
+    {
+      "label": "Key risks overview",
+      "prompt": "What are the key business risks right now?",
+      "context": "Key risks: 1) Two enterprise deals ($800K combined) in extended negotiation - legal complexity, 2) Integration test bottleneck slowing release cadence, 3) Three at-risk accounts ($420K ARR) flagged by CS, 4) Two senior engineer positions unfilled for 60+ days, 5) Competitor launched similar feature last month. Mitigations in place for each - details in risk register (SharePoint > Executive > Risk Management)."
+    },
+    {
+      "label": "Board meeting prep",
+      "prompt": "What should I prepare for the upcoming board meeting?",
+      "context": "Board meeting: Next Thursday. Required materials: Q1 results deck (draft ready in SharePoint > Executive > Board), financial summary (CFO reviewing), product roadmap update (v3.0 targeting Q3), headcount plan, competitive landscape analysis. Previous board feedback: wanted more detail on enterprise segment and AI initiative ROI (40% efficiency gain in support pilot). Action items from last meeting: 3 completed, 1 in progress."
+    }
+  ]
+}
