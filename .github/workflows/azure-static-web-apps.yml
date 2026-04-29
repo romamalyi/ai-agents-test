@@ -33,15 +33,15 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Publish .NET API
-        run: dotnet publish backend/MyProject.csproj -c Release -o publish
+        run: dotnet publish src/backend/PocNexus/PocNexus/PocNexus.csproj -c Release -o publish
 
-      - name: Resolve target slot and API URL
+      - name: Resolve API URL
         id: resolve
         run: |
           if [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "api_url=https://${{ vars.AZURE_API_NAME }}-staging.azurewebsites.net" >> $GITHUB_OUTPUT
+            echo "api_url=${{ vars.AZURE_API_URL_STAGING }}" >> $GITHUB_OUTPUT
           else
-            echo "api_url=https://${{ vars.AZURE_API_NAME }}.azurewebsites.net" >> $GITHUB_OUTPUT
+            echo "api_url=${{ vars.AZURE_API_URL_PROD }}" >> $GITHUB_OUTPUT
           fi
 
       - name: Deploy to App Service staging slot (PR)
@@ -74,24 +74,24 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          cache-dependency-path: src/frontend/package-lock.json
 
-      - name: Inject API URL into environment.ts
-        working-directory: frontend
+      - name: Inject backend URL into environment.prod.ts
+        working-directory: src/frontend
         run: |
-          cat > src/environments/environment.ts <<EOF
+          cat > src/environments/environment.prod.ts <<EOF
           export const environment = {
             production: true,
-            apiUrl: '${{ needs.deploy_backend.outputs.api_url }}'
+            backendUrl: '${{ needs.deploy_backend.outputs.api_url }}'
           };
           EOF
 
       - name: Install dependencies
-        working-directory: frontend
+        working-directory: src/frontend
         run: npm ci
 
       - name: Build Angular app
-        working-directory: frontend
+        working-directory: src/frontend
         run: npm run build
 
       - name: Deploy to Azure Static Web Apps
@@ -100,7 +100,7 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_SWA_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
-          app_location: "frontend/dist/my-project/browser"
+          app_location: "src/frontend/dist/poc-nexus/browser"
           skip_app_build: true
           skip_api_build: true
 
