@@ -35,7 +35,7 @@ jobs:
       - name: Publish .NET API
         run: |
           rm -rf publish
-          dotnet publish src/backend/PocNexus/PocNexus/PocNexus.csproj -c Release -o publish
+          dotnet publish PocNexus.sln -c Release -o publish
 
       - name: Resolve API URL
         id: resolve
