@@ -33,7 +33,9 @@ jobs:
           dotnet-version: '10.0.x'
 
       - name: Publish .NET API
-        run: dotnet publish src/backend/PocNexus/PocNexus/PocNexus.csproj -c Release -o publish
+        run: |
+          rm -rf publish
+          dotnet publish src/backend/PocNexus/PocNexus/PocNexus.csproj -c Release -o publish
 
       - name: Resolve API URL
         id: resolve
@@ -52,6 +54,7 @@ jobs:
           slot-name: staging
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_STAGING }}
           package: publish
+          startup-command: 'dotnet PocNexus.dll'
 
       - name: Deploy to App Service production (main)
         if: github.event_name == 'push'
@@ -60,6 +63,7 @@ jobs:
           app-name: ${{ vars.AZURE_API_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: publish
+          startup-command: 'dotnet PocNexus.dll'
 
   deploy_frontend:
     if: github.event.action != 'closed'
