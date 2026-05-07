@@ -57,10 +57,10 @@ export class HomeComponent implements AfterViewChecked {
   features: Feature[] = [
     { icon: '<img src="icons/features/slack-icon.svg" />', title: 'Slack UI Integration' },
     { icon: '<img src="icons/features/ms-teams-icon.svg" />', title: 'MS Teams UI Integration' },
+    { icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="#2CA5E0"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>', title: 'Telegram UI Integration' },
     { icon: '<img src="icons/features/summarization-icon.svg" />', title: 'Conversation Summarization' },
     { icon: '<img src="icons/features/corporate-data-icon.svg" />', title: 'Corporate Data Retrieval' },
-    { icon: '<img src="icons/features/rag-qna-icon.svg" />', title: 'RAG-Powered Q&A' },
-    { icon: '<img src="icons/features/multi-channel-icon.svg" />', title: 'Multi-Channel Support' }
+    { icon: '<img src="icons/features/rag-qna-icon.svg" />', title: 'RAG-Powered Q&A' }
   ];
 
   industries = [
@@ -72,7 +72,7 @@ export class HomeComponent implements AfterViewChecked {
     { icon: 'icons/industries/proptech.svg', title: 'Retail & E-commerce', description: 'Customer support and operations teams can access order data, summarize customer feedback threads, and query product catalogs.' }
   ];
 
-  activeTab: 'slack' | 'teams' = 'slack';
+  activeTab: 'slack' | 'teams' | 'telegram' = 'slack';
   activeSection: 'channels' | 'apps' = 'channels';
   activeItemIndex = 0;
   messageInput = '';
@@ -269,6 +269,70 @@ export class HomeComponent implements AfterViewChecked {
           isApp: true
         }
       ]
+    },
+    telegram: {
+      channels: [
+        {
+          name: 'Leo',
+          isApp: true,
+          id: 'leo-assistant',
+          messages: []
+        },
+        {
+          name: 'HR Assistant',
+          id: 'hr-assistant',
+          messages: [
+            { user: 'Sarah Chen', avatar: 'SC', text: 'Does anyone know how many PTO days we get per year?', time: '9:15 AM' },
+            { user: 'Mike Johnson', avatar: 'MJ', text: 'I think it\'s 20 days but I\'m not sure if that includes personal days.', time: '9:22 AM' },
+            { user: 'Emily Rodriguez', avatar: 'ER', text: 'What about the new hybrid work policy? I heard it changed recently.', time: '9:30 AM' }
+          ]
+        },
+        {
+          name: 'IT Helpdesk',
+          id: 'it-helpdesk',
+          messages: [
+            { user: 'David Kim', avatar: 'DK', text: 'My VPN keeps disconnecting every 30 minutes. Anyone else having this issue?', time: '10:00 AM' },
+            { user: 'Anna Martinez', avatar: 'AM', text: 'Same here! Started after the latest OS update.', time: '10:12 AM' },
+            { user: 'Chris Lee', avatar: 'CL', text: 'IT sent an email about updating the VPN client to v5.2. That might fix it.', time: '10:20 AM' }
+          ]
+        },
+        {
+          name: 'Sales Insights',
+          id: 'sales-insights',
+          messages: [
+            { user: 'Rachel Kim', avatar: 'RK', text: 'Pipeline update: we closed 3 deals this week totaling $450K!', time: '11:00 AM' },
+            { user: 'Brandon Lopez', avatar: 'BL', text: 'Great work team! What\'s the latest on the Meridian account?', time: '11:15 AM' },
+            { user: 'Tom Wilson', avatar: 'TW', text: 'Can someone pull the Q1 revenue numbers for the exec meeting?', time: '11:30 AM' }
+          ]
+        },
+        {
+          name: 'Project Copilot',
+          id: 'project-copilot',
+          messages: [
+            { user: 'Alex Turner', avatar: 'AT', text: 'Sprint 14 is wrapping up Friday. We need to close 5 more tickets.', time: '8:30 AM' },
+            { user: 'Nina Patel', avatar: 'NP', text: 'Deployed v2.4.1 to staging yesterday. QA is in progress.', time: '8:45 AM' },
+            { user: 'Carlos Rivera', avatar: 'CR', text: 'The integration test bottleneck is still the biggest blocker.', time: '9:00 AM' }
+          ]
+        },
+        {
+          name: 'Knowledge Base',
+          id: 'knowledge-base',
+          messages: [
+            { user: 'Rebecca Taylor', avatar: 'RT', text: 'Where can I find the architecture decision records?', time: '9:30 AM' },
+            { user: 'Peter Novak', avatar: 'PN', text: 'Does anyone have the link to the latest design system docs?', time: '9:45 AM' },
+            { user: 'Sophie Grant', avatar: 'SG', text: 'New team members keep asking about the onboarding checklist. Can we pin it?', time: '10:00 AM' }
+          ]
+        },
+        {
+          name: 'Executive Brief',
+          id: 'executive-brief',
+          messages: [
+            { user: 'Mark Anderson', avatar: 'MA', text: 'Need the Q1 KPI summary for the board meeting next Thursday.', time: '10:30 AM' },
+            { user: 'Lisa Park', avatar: 'LP', text: 'Customer NPS jumped to 72 this quarter. Big improvement.', time: '10:45 AM' },
+            { user: 'James Wright', avatar: 'JW', text: 'How are we tracking against the FY revenue forecast?', time: '11:00 AM' }
+          ]
+        }
+      ]
     }
   };
 
@@ -293,7 +357,7 @@ export class HomeComponent implements AfterViewChecked {
     return this.typingChannelId === this.currentChannel.id;
   }
 
-  switchTab(tab: 'slack' | 'teams'): void {
+  switchTab(tab: 'slack' | 'teams' | 'telegram'): void {
     this.activeTab = tab;
     this.activeSection = 'channels';
     this.activeItemIndex = 0;
@@ -336,7 +400,7 @@ export class HomeComponent implements AfterViewChecked {
     return colors[index % colors.length];
   }
 
-  isTeamsItemActive(index: number): boolean {
+  isChannelItemActive(index: number): boolean {
     return this.activeSection === 'channels' && this.activeItemIndex === index;
   }
 
