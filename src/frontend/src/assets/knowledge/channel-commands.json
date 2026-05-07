@@ -134,6 +134,33 @@
       "context": "Meeting recordings: Microsoft Stream, auto-transcribed. Access via Teams > Files tab or stream.company.com. Retention: 90 days for regular meetings, permanent for all-hands and town halls. Meeting notes: Confluence space per team. Action items tracked in Azure DevOps. Weekly team meetings auto-recorded if >3 participants."
     }
   ],
+  "performance-reviews": [
+    {
+      "label": "My review status",
+      "prompt": "What is the status of my current performance review?",
+      "context": "Performance reviews: annual formal review in December, quarterly check-ins in March, June, September. Current cycle: Q2 check-in due June 30. Review portal: hr.leobit.com/performance. Ratings: Exceeds Expectations, Meets Expectations, Developing, Below Expectations."
+    },
+    {
+      "label": "Promotion eligibility",
+      "prompt": "Am I eligible for a promotion and how do I request one?",
+      "context": "Promotion criteria: min 12 months in current role, last review rating 'Meets' or above, manager nomination required. Promotion cycles: Q2 (June) and Q4 (December). Submit request via hr.leobit.com/performance > Promotion Request. Requires self-assessment + manager endorsement + skip-level approval."
+    },
+    {
+      "label": "Review cycle dates",
+      "prompt": "What are the key dates for this performance review cycle?",
+      "context": "Review calendar: Q1 check-in (March 15-31), Q2 check-in (June 15-30), Q3 check-in (Sep 15-30), Annual review (Dec 1-20). 360 feedback collection: October. Goal-setting deadline: January 31. Compensation adjustments effective: February 1."
+    },
+    {
+      "label": "Goal setting guidance",
+      "prompt": "How should I set up my performance goals?",
+      "context": "Goal framework: OKRs (Objectives and Key Results). Each employee: 3-5 objectives, 2-4 key results each. Goals must be SMART. Align with team OKRs set by manager. Submit goals in hr.leobit.com/performance > My Goals by January 31. Mid-year goal adjustment allowed with manager approval."
+    },
+    {
+      "label": "360 feedback process",
+      "prompt": "How does the 360-degree feedback process work?",
+      "context": "360 feedback: October annually. Employee selects 5-8 peers + manager. HR adds direct reports if applicable. Anonymous responses. Categories: collaboration, technical skills, communication, leadership, impact. Results shared with employee and manager in November review prep."
+    }
+  ],
   "executive-brief": [
     {
       "label": "Q1 KPI summary",
