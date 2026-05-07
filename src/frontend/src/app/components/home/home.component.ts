@@ -128,6 +128,13 @@ export class HomeComponent implements AfterViewChecked {
       { label: 'Headcount update', prompt: 'What is the current headcount and hiring status?', context: '142 employees. 12 open (5 eng, 3 sales, 2 product, 1 design, 1 HR). 4 offers pending. 42 days avg fill. Attrition 8%.' },
       { label: 'Key risks overview', prompt: 'What are the key business risks right now?', context: 'Risks: $800K deals extended, test bottleneck, 3 at-risk accounts $420K, 2 senior eng unfilled, competitor feature launch.' },
       { label: 'Board meeting prep', prompt: 'What should I prepare for the upcoming board meeting?', context: 'Board Thursday. Q1 deck in SharePoint. CFO financials. Product roadmap v3.0 Q3. Previous: more enterprise + AI ROI data.' }
+    ],
+    'performance-reviews': [
+      { label: 'My review status', prompt: 'What is the status of my current performance review?', context: 'Performance reviews: annual formal review in December, quarterly check-ins in March, June, September. Current cycle: Q2 check-in due June 30. Review portal: hr.leobit.com/performance. Ratings: Exceeds Expectations, Meets Expectations, Developing, Below Expectations.' },
+      { label: 'Promotion eligibility', prompt: 'Am I eligible for a promotion and how do I request one?', context: 'Promotion criteria: min 12 months in current role, last review rating "Meets" or above, manager nomination required. Promotion cycles: Q2 (June) and Q4 (December). Submit request via hr.leobit.com/performance > Promotion Request. Requires self-assessment + manager endorsement + skip-level approval.' },
+      { label: 'Review cycle dates', prompt: 'What are the key dates for this performance review cycle?', context: 'Review calendar: Q1 check-in (March 15-31), Q2 check-in (June 15-30), Q3 check-in (Sep 15-30), Annual review (Dec 1-20). 360 feedback collection: October. Goal-setting deadline: January 31. Compensation adjustments effective: February 1.' },
+      { label: 'Goal setting guidance', prompt: 'How should I set up my performance goals?', context: 'Goal framework: OKRs (Objectives and Key Results). Each employee: 3-5 objectives, 2-4 key results each. Goals must be SMART. Align with team OKRs set by manager. Submit goals in hr.leobit.com/performance > My Goals by January 31. Mid-year goal adjustment allowed with manager approval.' },
+      { label: '360 feedback process', prompt: 'How does the 360-degree feedback process work?', context: '360 feedback: October annually. Employee selects 5-8 peers + manager. HR adds direct reports if applicable. Anonymous responses. Categories: collaboration, technical skills, communication, leadership, impact. Results shared with employee and manager in November review prep.' }
     ]
   };
 
@@ -186,6 +193,15 @@ export class HomeComponent implements AfterViewChecked {
             { user: 'Mark Anderson', avatar: 'MA', text: 'Need the Q1 KPI summary for the board meeting next Thursday.', time: '10:30 AM' },
             { user: 'Lisa Park', avatar: 'LP', text: 'Customer NPS jumped to 72 this quarter. Big improvement.', time: '10:45 AM' },
             { user: 'James Wright', avatar: 'JW', text: 'How are we tracking against the FY revenue forecast?', time: '11:00 AM' }
+          ]
+        },
+        {
+          name: '# performance-reviews',
+          id: 'performance-reviews',
+          messages: [
+            { user: 'Jessica Turner', avatar: 'JT', text: 'Has anyone submitted their Q2 check-in yet? Deadline is end of June.', time: '9:00 AM' },
+            { user: 'Ryan Patel', avatar: 'RP', text: 'I just finished mine. Remember to align your goals with the team OKRs.', time: '9:18 AM' },
+            { user: 'Megan Brooks', avatar: 'MB', text: 'Does anyone know the timeline for the next promotion cycle?', time: '9:35 AM' }
           ]
         }
       ],
@@ -258,6 +274,15 @@ export class HomeComponent implements AfterViewChecked {
             { user: 'Mark Anderson', avatar: 'MA', text: 'Need the Q1 KPI summary for the board meeting next Thursday.', time: '10:30 AM' },
             { user: 'Lisa Park', avatar: 'LP', text: 'Customer NPS jumped to 72 this quarter. Big improvement.', time: '10:45 AM' },
             { user: 'James Wright', avatar: 'JW', text: 'How are we tracking against the FY revenue forecast?', time: '11:00 AM' }
+          ]
+        },
+        {
+          name: 'Performance Reviews',
+          id: 'performance-reviews',
+          messages: [
+            { user: 'Jessica Turner', avatar: 'JT', text: 'Has anyone submitted their Q2 check-in yet? Deadline is end of June.', time: '9:00 AM' },
+            { user: 'Ryan Patel', avatar: 'RP', text: 'I just finished mine. Remember to align your goals with the team OKRs.', time: '9:18 AM' },
+            { user: 'Megan Brooks', avatar: 'MB', text: 'Does anyone know the timeline for the next promotion cycle?', time: '9:35 AM' }
           ]
         }
       ],
