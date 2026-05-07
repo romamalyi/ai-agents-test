@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="mb-12 text-[#595959]">
-      <p>Interactive demo of an AI-powered corporate assistant that integrates with Slack and Microsoft Teams. Leo can answer HR questions, troubleshoot IT issues, provide sales analytics, track project status, and retrieve knowledge base information — all powered by Azure OpenAI. Each channel demonstrates a different use case for corporate AI assistants.</p>
+      <p>Interactive demo of an AI-powered corporate assistant that integrates with Slack, Microsoft Teams, and Telegram. Leo can answer HR questions, troubleshoot IT issues, provide sales analytics, track project status, and retrieve knowledge base information — all powered by Azure OpenAI. Each channel demonstrates a different use case for corporate AI assistants.</p>
     </div>
   </section>
 
@@ -24,10 +24,10 @@
         <div class="w-full lg:w-1/3">
           <h1 class="text-3xl font-bold mb-6">How to Use</h1>
           <ol class="space-y-6 my-6" style="list-style-type: decimal; list-style-position: outside; margin-left: 32px; line-height: 24px;">
-            <li class="mb-4"><span class="font-bold">Select a platform tab</span> — choose between Slack or Microsoft Teams interface.</li>
+            <li class="mb-4"><span class="font-bold">Select a platform tab</span> — choose between Slack, Microsoft Teams, or Telegram interface.</li>
             <li class="mb-4"><span class="font-bold">Browse channels</span> — each channel demonstrates a different AI use case (HR, IT, Sales, Projects, Knowledge Base, Executive).</li>
             <li class="mb-4"><span class="font-bold">Tag the bot</span> — type <code class="bg-gray-200 px-1 rounded">&#64;leo</code> in your message to activate the AI assistant in any channel.</li>
-            <li class="mb-4"><span class="font-bold">Use the Apps section</span> — in Slack, click "Leo" under Apps for a direct conversation without needing to tag. In Teams, select the "Leo" chat.</li>
+            <li class="mb-4"><span class="font-bold">Use the Apps section</span> — in Slack, click "Leo" under Apps for a direct conversation without needing to tag. In Teams and Telegram, select the "Leo" chat.</li>
             <li class="mb-4"><span class="font-bold">Ask questions</span> — try HR policy questions, IT troubleshooting, sales analytics, sprint status, or company knowledge queries.</li>
           </ol>
           <div class="mt-6 text-sm text-gray-700">
@@ -62,6 +62,15 @@
                 <path d="M5.5 11h5v1.25h-1.75V16h-1.5v-3.75H5.5V11z" fill="white"/>
               </svg>
               MS Teams
+            </button>
+            <button
+              (click)="switchTab('telegram')"
+              [class]="activeTab === 'telegram' ? 'tab-active' : 'tab-inactive'"
+              class="px-6 py-3 font-bold text-sm flex flex-1 items-center justify-center gap-2 transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+              </svg>
+              Telegram
             </button>
           </div>
 
@@ -248,6 +257,138 @@
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                     </button>
                   </div>
+                </div>
+              </div>
+            </div>
+          <!-- ==================== TELEGRAM LAYOUT ==================== -->
+          <div *ngIf="activeTab === 'telegram'" class="flex chat-container" style="height: 550px; background-color: #F4F4F5;">
+            <!-- Telegram Sidebar -->
+            <div class="telegram-chat-list flex flex-col flex-shrink-0">
+              <div class="flex items-center gap-2 px-3 border-b border-gray-200 h-[50px] bg-white">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#2CA5E0">
+                  <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+                </svg>
+                <span class="font-bold text-sm text-gray-900">Telegram</span>
+              </div>
+              <div class="flex-1 overflow-y-auto bg-white">
+                <div *ngFor="let channel of currentPlatform.channels; let i = index"
+                  (click)="selectChannel(i)"
+                  class="telegram-chat-item"
+                  [class.active]="isTeamsItemActive(i)">
+                  <div class="flex items-center gap-3 px-3 py-2.5 cursor-pointer">
+                    <div class="w-12 h-12 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0"
+                      [style.background]="channel.isApp ? 'white' : getAvatarColor(channel.name.substring(0,2))">
+                      <span *ngIf="!channel.isApp">{{ channel.name.charAt(0) }}</span>
+                      <img *ngIf="channel.isApp" class="w-10 h-10" src="icons/Leobit.svg" />
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-1.5">
+                          <span class="text-sm font-bold tg-name truncate">{{ channel.name }}</span>
+                          <span *ngIf="channel.isApp" class="text-[9px] bg-green-100 text-green-700 px-1 py-0 rounded font-semibold tg-badge">BOT</span>
+                        </div>
+                        <span *ngIf="channel.messages.length" class="text-[11px] tg-time flex-shrink-0 ml-2">{{ channel.messages[channel.messages.length - 1]?.time }}</span>
+                      </div>
+                      <p *ngIf="channel.messages.length" class="text-xs tg-preview truncate mt-0.5">{{ channel.messages[channel.messages.length - 1]?.text }}</p>
+                      <p *ngIf="!channel.messages.length" class="text-xs tg-preview truncate mt-0.5">Start a conversation</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Telegram Chat Area -->
+            <div class="flex-1 flex flex-col border-l border-gray-200">
+              <!-- Chat Header -->
+              <div class="px-4 py-2.5 border-b border-gray-200 bg-white h-[50px]">
+                <div class="flex items-center gap-2">
+                  <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                    [style.background]="currentChannel.isApp ? 'white' : getAvatarColor(currentChannel.name.substring(0,2))">
+                    <span *ngIf="!currentChannel.isApp">{{ currentChannel.name.charAt(0) }}</span>
+                    <img *ngIf="currentChannel.isApp" class="w-7 h-7" src="icons/Leobit.svg" />
+                  </div>
+                  <span class="font-bold text-sm text-gray-900">{{ currentChannel.name }}</span>
+                  <span *ngIf="currentChannel.isApp" class="text-[10px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded font-semibold">BOT</span>
+                </div>
+              </div>
+
+              <!-- Messages Area -->
+              <div #messagesArea class="flex-1 overflow-y-auto px-4 py-4 telegram-messages-area space-y-1">
+                <!-- Empty state for Leo Bot -->
+                <div *ngIf="currentChannel.isApp && currentChannel.messages.length === 0" class="flex flex-col items-center justify-center h-full text-gray-400">
+                  <div class="w-20 h-20 rounded-full flex items-center justify-center bg-white shadow-md mb-3">
+                    <img class="w-16 h-16" src="icons/Leobit.svg" />
+                  </div>
+                  <p class="text-sm font-bold text-gray-900">Leo</p>
+                  <p class="text-xs mt-1 text-[#707579]">AI Assistant by Leobit</p>
+                  <p class="text-xs mt-3 text-center max-w-xs text-[#707579]">Send a message to start a conversation. No need to tag — Leo responds to everything here.</p>
+                </div>
+
+                <!-- Telegram-style message bubbles -->
+                <div *ngFor="let msg of currentChannel.messages" class="mb-2">
+                  <!-- Outgoing (user) -->
+                  <div *ngIf="msg.user === 'You'" class="flex justify-end">
+                    <div class="telegram-bubble-out">
+                      <div class="text-sm text-gray-900 whitespace-pre-line" [innerHTML]="highlightMentions(msg.text)"></div>
+                      <div class="text-[10px] text-[#999999] text-right mt-1 leading-none">{{ msg.time }}</div>
+                    </div>
+                  </div>
+                  <!-- Incoming (others + bot) -->
+                  <div *ngIf="msg.user !== 'You'" class="flex justify-start items-end gap-2">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                      [style.background]="msg.isBot ? 'white' : getAvatarColor(msg.avatar)">
+                      <img *ngIf="msg.isBot" class="w-6 h-6" src="icons/Leobit.svg" />
+                      <span *ngIf="!msg.isBot" class="text-white text-xs font-bold">{{ msg.avatar }}</span>
+                    </div>
+                    <div>
+                      <div class="text-xs font-semibold mb-1" [class.text-leobit-gradient]="msg.isBot" [style.color]="!msg.isBot ? '#2CA5E0' : ''">{{ msg.user }}</div>
+                      <div class="telegram-bubble-in">
+                        <div class="text-sm text-gray-900 whitespace-pre-line" [innerHTML]="highlightMentions(msg.text)"></div>
+                        <div class="text-[10px] text-[#999999] text-right mt-1 leading-none">{{ msg.time }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Typing Indicator (Telegram style) -->
+                <div *ngIf="isTypingInCurrentChannel" class="flex items-end gap-2 mb-2">
+                  <div class="w-8 h-8 rounded-full flex items-center justify-center bg-white flex-shrink-0 shadow-sm">
+                    <img class="w-6 h-6" src="icons/Leobit.svg" />
+                  </div>
+                  <div class="telegram-bubble-in py-3 px-4">
+                    <div class="typing-indicator"><span></span><span></span><span></span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Input Area (Telegram style) -->
+              <div class="px-4 py-3 border-t border-gray-200 bg-white relative">
+                <!-- Mention suggestion dropdown -->
+                <div *ngIf="showMentionSuggestion && !currentChannel.isApp" class="mention-suggestion-dropdown">
+                  <div class="mention-header" (click)="insertMention()">
+                    <div class="mention-avatar">
+                      <img class="w-5 h-5" src="icons/Leobit.svg" />
+                    </div>
+                    <span class="mention-name">Leo</span>
+                    <span class="mention-badge">BOT</span>
+                  </div>
+                  <div *ngIf="currentCommands.length" class="mention-commands">
+                    <div *ngFor="let cmd of currentCommands" class="mention-command-item" (click)="selectCommand(cmd)">
+                      {{ cmd.label }}
+                    </div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="telegram-input-pill flex-1">
+                    <input type="text" [(ngModel)]="messageInput" (ngModelChange)="onMessageInputChange()" (keydown.enter)="sendMessage()"
+                      [placeholder]="currentChannel.isApp ? 'Message Leo' : 'Message ' + currentChannel.name + ' (type @leo to ask the bot)'"
+                      class="flex-1 outline-none text-sm bg-transparent w-full">
+                  </div>
+                  <button (click)="sendMessage()" class="telegram-send-btn" [disabled]="!messageInput.trim()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white">
+                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
