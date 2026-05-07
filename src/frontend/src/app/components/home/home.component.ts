@@ -400,7 +400,7 @@ export class HomeComponent implements AfterViewChecked {
     return colors[index % colors.length];
   }
 
-  isTeamsItemActive(index: number): boolean {
+  isChannelItemActive(index: number): boolean {
     return this.activeSection === 'channels' && this.activeItemIndex === index;
   }
 

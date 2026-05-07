@@ -164,7 +164,7 @@
                 <div *ngFor="let channel of currentPlatform.channels; let i = index"
                   (click)="selectChannel(i)"
                   class="teams-chat-item"
-                  [class.active]="isTeamsItemActive(i)">
+                  [class.active]="isChannelItemActive(i)">
                   <div class="flex items-center gap-2.5 px-3 py-2.5 cursor-pointer">
                     <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
                       [style.background]="channel.isApp ? 'white' : getTeamsChannelColor(i)">
@@ -260,6 +260,7 @@
                 </div>
               </div>
             </div>
+          </div>
           <!-- ==================== TELEGRAM LAYOUT ==================== -->
           <div *ngIf="activeTab === 'telegram'" class="flex chat-container" style="height: 550px; background-color: #F4F4F5;">
             <!-- Telegram Sidebar -->
@@ -274,7 +275,7 @@
                 <div *ngFor="let channel of currentPlatform.channels; let i = index"
                   (click)="selectChannel(i)"
                   class="telegram-chat-item"
-                  [class.active]="isTeamsItemActive(i)">
+                  [class.active]="isChannelItemActive(i)">
                   <div class="flex items-center gap-3 px-3 py-2.5 cursor-pointer">
                     <div class="w-12 h-12 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0"
                       [style.background]="channel.isApp ? 'white' : getAvatarColor(channel.name.substring(0,2))">
